@@ -58,11 +58,9 @@ export default {
 .home-icons >>> .swiper-container {
   height: 0;
   padding-bottom: 50%;
-  touch-action: none;
 }
 .home-icons {
   padding-top: 0.1rem;
-  touch-action: none;
   .icon {
     position: relative;
     float: left;

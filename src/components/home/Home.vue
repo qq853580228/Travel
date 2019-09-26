@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home">
     <home-header />
     <swiper :swiper-list="swiperList" />
     <home-icons :icon-list="iconList" />
@@ -54,4 +54,7 @@ export default {
 </script>
 
 <style scoped>
+.home {
+  touch-action: none;
+}
 </style>

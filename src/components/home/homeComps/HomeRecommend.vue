@@ -3,7 +3,7 @@
     <div class="recommend-title">热销推荐</div>
     <ul>
       <li class="recommend-item  border-bottom"
-          v-for="item in recommendsList"
+          v-for="item in recommendList"
           :key="item.id">
         <img class="item-img"
              :src="item.imgUrl"
@@ -21,28 +21,12 @@
 <script>
 export default {
   name: 'HomeRecommend',
-  data () {
-    return {
-      recommendsList: [
-        {
-          id: '001',
-          imgUrl: 'https://imgs.qunarzz.com/sight/p0/1804/1a/1a48cc20b0d6ed44a3.img.jpg_200x200_32e22bed.jpg',
-          title: '奥林匹克塔',
-          desc: '【通知】奥林匹克塔9月29日、30日、 10月1 日和2 日有接待活动，全天闭塔（日场、夜场均不接待），给您带来的不便敬请谅解！'
-        },
-        {
-          id: '002',
-          imgUrl: 'https://imgs.qunarzz.com/sight/p0/1804/1a/1a48cc20b0d6ed44a3.img.jpg_200x200_32e22bed.jpg',
-          title: '奥林匹克塔',
-          desc: '【通知】奥林匹克塔9月29日、30日、 10月1 日和2 日有接待活动，全天闭塔（日场、夜场均不接待），给您带来的不便敬请谅解！'
-        },
-        {
-          id: '003',
-          imgUrl: 'https://imgs.qunarzz.com/sight/p0/1804/1a/1a48cc20b0d6ed44a3.img.jpg_200x200_32e22bed.jpg',
-          title: '奥林匹克塔',
-          desc: '【通知】奥林匹克塔9月29日、30日、 10月1 日和2 日有接待活动，全天闭塔（日场、夜场均不接待），给您带来的不便敬请谅解！'
-        }
-      ]
+  props: {
+    recommendList: {
+      type: Array,
+      default: function () {
+        return []
+      }
     }
   }
 }

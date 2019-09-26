@@ -1,6 +1,6 @@
 <template>
   <div class="home-icons">
-    <swiper>
+    <swiper :options="swiperOption">
       <swiper-slide v-for="(page, index) of pages"
                     :key="index">
         <div class="icon"
@@ -21,61 +21,25 @@
 <script>
 export default {
   name: 'HomeIcons',
+  props: {
+    iconList: {
+      type: Array,
+      default: function () {
+        return []
+      }
+    }
+  },
   data () {
     return {
-      iconsList: [
-        {
-          id: '001',
-          imgUrl: 'http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png',
-          desc: '景点门票'
-        },
-        {
-          id: '002',
-          imgUrl: 'http://img1.qunarzz.com/piao/fusion/1711/df/86cbcfc533330d02.png',
-          desc: '滑雪季'
-        },
-        {
-          id: '003',
-          imgUrl: 'http://img1.qunarzz.com/piao/fusion/1710/a6/83f636bd75ae6302.png',
-          desc: '泡温泉'
-        },
-        {
-          id: '004',
-          imgUrl: 'http://img1.qunarzz.com/piao/fusion/1611/35/2640cab202c41b02.png',
-          desc: '动植园'
-        },
-        {
-          id: '005',
-          imgUrl: 'http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png',
-          desc: '景点门票'
-        },
-        {
-          id: '006',
-          imgUrl: 'http://img1.qunarzz.com/piao/fusion/1711/df/86cbcfc533330d02.png',
-          desc: '滑雪季'
-        },
-        {
-          id: '007',
-          imgUrl: 'http://img1.qunarzz.com/piao/fusion/1710/a6/83f636bd75ae6302.png',
-          desc: '泡温泉'
-        },
-        {
-          id: '008',
-          imgUrl: 'http://img1.qunarzz.com/piao/fusion/1611/35/2640cab202c41b02.png',
-          desc: '动植园'
-        },
-        {
-          id: '009',
-          imgUrl: 'http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png',
-          desc: '景点门票'
-        }
-      ]
+      swiperOption: {
+
+      }
     }
   },
   computed: {
     pages () {
       const pages = []
-      this.iconsList.forEach((item, index) => {
+      this.iconList.forEach((item, index) => {
         const page = Math.floor(index / 8)
         if (!pages[page]) {
           pages[page] = []

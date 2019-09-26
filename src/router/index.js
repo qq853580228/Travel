@@ -4,11 +4,20 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: () => import('../components/home/Home.vue')
-    }
+  mode: 'history',
+  routes: [{
+    path: '/',
+    redirect: '/home'
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: () => import('../components/home/Home.vue')
+  },
+  {
+    path: '/city',
+    name: 'City',
+    component: () => import('../components/city/City.vue')
+  }
   ]
 })

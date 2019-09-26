@@ -97,6 +97,7 @@ export default {
   touch-action: none;
 }
 .home-icons {
+  padding-top: 0.1rem;
   touch-action: none;
   .icon {
     position: relative;

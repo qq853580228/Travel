@@ -4,7 +4,7 @@
          @click="handleAbs"
          v-show="isShowAbs"></div>
     <div class="header-fixed"
-         :style="opacityStyle"
+         :style="gitopacityStyle"
          v-show="!isShowAbs">
       <router-link to="/home">
         <span class="iconfont icon-fanhui"></span>

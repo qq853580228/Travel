@@ -31,7 +31,8 @@ export default {
       iconList: [],
       recommendList: [],
       swiperList: [],
-      weekendList: []
+      weekendList: [],
+      lastCity: ''
     }
   },
   components: {
@@ -44,7 +45,7 @@ export default {
   },
   methods: {
     getHomeInfo () {
-      getHomeInfo()
+      getHomeInfo(this.$store.state.city)
         .then(res => {
           res = res.data
           if (res.ret && res.data) {
@@ -59,6 +60,13 @@ export default {
   },
   created () {
     this.getHomeInfo()
+    this.lastCity = this.$store.state.city
+  },
+  activated () {
+    if (this.lastCity !== this.$store.state.city) {
+      this.lastCity = this.$store.state.city
+      this.getHomeInfo()
+    }
   }
 }
 </script>

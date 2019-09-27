@@ -1,5 +1,6 @@
 <template>
-  <scroll class="wrapper">
+  <scroll class="wrapper"
+          ref="scroll">
     <div class="city-list">
       <div class="area">
         <div class="title border-topbottom">当前城市</div>
@@ -15,14 +16,18 @@
           <div class="button-wrapper"
                v-for="item in hotCities"
                :key="item.id">
-            <div class="btn">{{item.name}}</div>
+            <div class="
+               btn">{{item.name}}</div>
           </div>
         </div>
       </div>
       <div class="area"
            v-for="(val, key) in cities"
-           :key="key">
-        <div class="title border-topbottom">{{key}}</div>
+           :key="key"
+           :ref="key">
+        <div class="
+         title
+         border-topbottom">{{key}}</div>
         <div class="city-item">
           <div class="item border-bottom"
                v-for="item in val"
@@ -51,8 +56,30 @@ export default {
       }
     }
   },
+  data () {
+    return {
+      letter: null
+    }
+  },
   components: {
     Scroll
+  },
+  mounted () {
+    this.$bus.$on('letterChange', data => {
+      this.letter = data
+    })
+    this.$bus.$on('getMoveIndex', letter => {
+      const ele = this.$refs[letter]
+      this.$refs.scroll.scrollToElement(ele[0])
+    })
+  },
+  watch: {
+    letter () {
+      if (this.letter) {
+        const ele = this.$refs[this.letter]
+        this.$refs.scroll.scrollToElement(ele[0])
+      }
+    }
   }
 }
 </script>

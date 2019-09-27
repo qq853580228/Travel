@@ -25,6 +25,11 @@ export default {
       this.scroll.on('pullingUp', () => {
       })
     }
+  },
+  methods: {
+    scrollToElement (ele) {
+      this.scroll.scrollToElement(ele)
+    }
   }
 }
 </script>

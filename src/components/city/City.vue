@@ -36,7 +36,6 @@ export default {
     getCityData () {
       getCityData()
         .then(res => {
-          console.log(res)
           res = res.data
           if (res.ret && res.data) {
             const data = res.data

@@ -15,6 +15,9 @@ Vue.config.productionTip = false
 fastClick.attach(document.body)
 Vue.use(VueAwesomeSwiper)
 /* eslint-disable no-new */
+
+Vue.prototype.$bus = new Vue()
+
 new Vue({
   el: '#app',
   router,

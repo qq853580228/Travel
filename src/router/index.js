@@ -12,12 +12,17 @@ export default new Router({
   {
     path: '/home',
     name: 'Home',
-    component: () => import('../components/home/Home.vue')
+    component: () => import('components/home/Home.vue')
   },
   {
     path: '/city',
     name: 'City',
-    component: () => import('../components/city/City.vue')
+    component: () => import('components/city/City.vue')
+  },
+  {
+    path: '/detail/:id',
+    name: 'Detail',
+    component: () => import('components/detail/Detail.vue')
   }
   ]
 })

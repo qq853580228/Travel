@@ -49,7 +49,7 @@ export default {
         const currentOffsetTop = e.touches[0].clientY - 79
         const index = Math.floor((currentOffsetTop - aOffsetTop) / a.offsetHeight)
         if (index >= 0 && index < this.letters.length) {
-          this.$refs.toast.innerText = this.letters[index]
+          this.$refs.toast.setAttribute('data-before', this.letters[index])
         }
       }
     },
@@ -63,7 +63,7 @@ export default {
           const index = Math.floor((currentOffsetTop - this.aOffsetTop) / this.a.offsetHeight)
           if (index >= 0 && index < this.letters.length) {
             this.$bus.$emit('getMoveIndex', this.letters[index])
-            this.$refs.toast.innerText = this.letters[index]
+            this.$refs.toast.setAttribute('data-before', this.letters[index])
           }
         }
       }, 16)
@@ -76,7 +76,7 @@ export default {
   computed: {
     letters () {
       let letters = []
-      for (var k in this.cities) {
+      for (let k in this.cities) {
         letters.push(k)
       }
       return letters
@@ -106,12 +106,13 @@ export default {
     text-align: center;
   }
 }
-.toast {
+.toast:before {
   position: absolute;
+  display: block;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  content: "";
+  content: attr(data-before);
   width: 0.5rem;
   height: 0.5rem;
   background-color: green;

@@ -72,6 +72,9 @@ export default {
       const ele = this.$refs[letter]
       this.$refs.scroll.scrollToElement(ele[0])
     })
+    // this.$bus.$on('itemClick', val => {
+    //   this.$refs.btn.innerText = val
+    // })
   },
   watch: {
     letter () {
@@ -92,7 +95,7 @@ export default {
   right: 0;
   bottom: 0;
   overflow: hidden;
-  z-index: -1;
+
   .title {
     line-height: 0.54rem;
     background-color: #eee;

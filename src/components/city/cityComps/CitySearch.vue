@@ -14,7 +14,8 @@
           <li class="item border-topbottom"
               v-for="item in lists"
               :key="item.id"
-              ref="item">{{item.name}}</li>
+              ref="item"
+              @click="handleCityClick(item.name)">{{item.name}}</li>
           <li class="item border-topbottom"
               v-show="hasData">没有找到相关信息</li>
         </ul>
@@ -68,6 +69,11 @@ export default {
         }
         this.lists = result
       }, 100)
+    },
+    handleCityClick (city) {
+      this.$store.commit('cityChange', city)
+      this.$router.push('/home')
+      this.keyword = ''
     }
     // itemClick (val) {
     //   this.$bus.$emit('itemClick', val)

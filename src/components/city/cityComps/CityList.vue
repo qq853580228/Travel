@@ -1,6 +1,5 @@
 <template>
-  <div class="wrapper"
-       ref="wrapper">
+  <scroll class="wrapper">
     <div class="city-list">
       <div class="area">
         <div class="title border-topbottom">当前城市</div>
@@ -8,76 +7,52 @@
           <div class="button-wrapper">
             <div class="btn">北京</div>
           </div>
-          <div class="button-wrapper">
-            <div class="btn">北京</div>
-          </div>
-          <div class="button-wrapper">
-            <div class="btn">北京</div>
-          </div>
-          <div class="button-wrapper">
-            <div class="btn">北京</div>
-          </div>
-          <div class="button-wrapper">
-            <div class="btn">北京</div>
-          </div>
         </div>
       </div>
       <div class="area">
         <div class="title border-topbottom">热门城市</div>
-      </div>
-      <div class="area">
-        <div class="title border-topbottom">A</div>
-        <div class="city-item">
-          <div class="item border-bottom">阿拉德大陆</div>
-          <div class="item border-bottom">阿拉德大陆</div>
-          <div class="item border-bottom">阿拉德大陆</div>
-          <div class="item border-bottom">阿拉德大陆</div>
-          <div class="item border-bottom">阿拉德大陆</div>
-          <div class="item border-bottom">阿拉德大陆</div>
+        <div class="button-list">
+          <div class="button-wrapper"
+               v-for="item in hotCities"
+               :key="item.id">
+            <div class="btn">{{item.name}}</div>
+          </div>
         </div>
       </div>
-      <div class="area">
-        <div class="title border-topbottom">A</div>
+      <div class="area"
+           v-for="(val, key) in cities"
+           :key="key">
+        <div class="title border-topbottom">{{key}}</div>
         <div class="city-item">
-          <div class="item border-bottom">阿拉德大陆</div>
-          <div class="item border-bottom">阿拉德大陆</div>
-          <div class="item border-bottom">阿拉德大陆</div>
-          <div class="item border-bottom">阿拉德大陆</div>
-          <div class="item border-bottom">阿拉德大陆</div>
-          <div class="item border-bottom">阿拉德大陆</div>
-        </div>
-      </div>
-      <div class="area">
-        <div class="title border-topbottom">A</div>
-        <div class="city-item">
-          <div class="item border-bottom">阿拉德大陆</div>
-          <div class="item border-bottom">阿拉德大陆</div>
-          <div class="item border-bottom">阿拉德大陆</div>
-          <div class="item border-bottom">阿拉德大陆</div>
-          <div class="item border-bottom">阿拉德大陆</div>
-          <div class="item border-bottom">阿拉德大陆</div>
+          <div class="item border-bottom"
+               v-for="item in val"
+               :key="item.id">{{item.name}}</div>
         </div>
       </div>
     </div>
-  </div>
+  </scroll>
 </template>
 
 <script>
-import BScroll from 'better-scroll'
+import Scroll from 'components/scroll/Scroll.vue'
 export default {
   name: 'CityList',
-  data () {
-    return {
-      scroll: null
+  props: {
+    cities: {
+      type: Object,
+      default: function () {
+        return {}
+      }
+    },
+    hotCities: {
+      type: Array,
+      default: function () {
+        return []
+      }
     }
   },
-  mounted () {
-    this.scroll = new BScroll(this.$refs.wrapper, {
-      click: true
-    })
-    this.scroll.on('pullingUp', () => {
-      console.log('到底了')
-    })
+  components: {
+    Scroll
   }
 }
 </script>

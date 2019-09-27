@@ -1,10 +1,14 @@
 <template>
   <div class="home">
     <home-header />
-    <swiper :swiper-list="swiperList" />
-    <home-icons :icon-list="iconList" />
-    <home-recommend :recommend-list="recommendList" />
-    <home-weekend :weekend-list="weekendList" />
+    <scroll class="wrapper">
+      <swiper :swiper-list="swiperList"
+              class="swiper" />
+      <home-icons :icon-list="iconList"
+                  class="icons" />
+      <home-recommend :recommend-list="recommendList" />
+      <home-weekend :weekend-list="weekendList" />
+    </scroll>
   </div>
 </template>
 
@@ -16,7 +20,10 @@ import HomeIcons from 'components/home/homeComps/HomeIcons.vue'
 import HomeRecommend from 'components/home/homeComps/HomeRecommend.vue'
 import HomeWeekend from 'components/home/homeComps/HomeWeekend.vue'
 
-import axios from 'axios'
+import { getHomeInfo } from 'network/home.js'
+
+import Scroll from 'components/scroll/Scroll.vue'
+
 export default {
   name: 'Home',
   data () {
@@ -32,18 +39,21 @@ export default {
     HomeIcons,
     HomeRecommend,
     HomeWeekend,
-    Swiper
+    Swiper,
+    Scroll
   },
   methods: {
     getHomeInfo () {
-      axios({
-        url: '/api/index.json'
-      })
+      getHomeInfo()
         .then(res => {
-          this.iconList = res.data.data.iconList
-          this.recommendList = res.data.data.recommendList
-          this.swiperList = res.data.data.swiperList
-          this.weekendList = res.data.data.weekendList
+          res = res.data
+          if (res.ret && res.data) {
+            const data = res.data
+            this.iconList = data.iconList
+            this.recommendList = data.recommendList
+            this.swiperList = data.swiperList
+            this.weekendList = data.weekendList
+          }
         })
     }
   },
@@ -53,8 +63,23 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .home {
   touch-action: none;
+  .wrapper {
+    position: absolute;
+    top: 0.43rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: -1;
+  }
+  .swiper {
+    position: relative;
+  }
+  .icons {
+    padding-top: 0.5rem;
+  }
 }
 </style>

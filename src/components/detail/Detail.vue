@@ -1,8 +1,11 @@
 <template>
   <div class="detail">
-    <detail-banner />
+    <detail-banner :sight-name="sightName"
+                   :banner-img="bannerImg"
+                   :gallary-imgs="gallaryImgs"
+                   :category-list="categoryList" />
     <detail-header />
-    <detail-list :lists="lists" />
+    <detail-list :lists="categoryList" />
     <div class="slide"></div>
   </div>
 </template>
@@ -11,35 +14,35 @@
 import DetailBanner from 'components/detail/detailComps/DetailBanner.vue'
 import DetailHeader from 'components/detail/detailComps/DetailHeader.vue'
 import DetailList from 'components/detail/detailComps/DetailList.vue'
+
+import { getDetailInfo } from 'network/detail.js'
 export default {
   name: 'Detail',
   data () {
     return {
-      lists: [
-        {
-          title: '成人票',
-          children: [{
-            title: '成人三馆联票',
-            children: [
-              {
-                title: '成人三馆联票 - 厦门连锁店'
-              }
-            ]
-          },
-          {
-            title: '成人五馆联票'
+      sightName: '',
+      bannerImg: '',
+      gallaryImgs: [],
+      categoryList: []
+    }
+  },
+  created () {
+    this.getDetailInfo()
+  },
+  methods: {
+    getDetailInfo () {
+      getDetailInfo(this.$route.params.id)
+        .then(res => {
+          console.log(res)
+          res = res.data
+          if (res.ret && res.data) {
+            let data = res.data
+            this.sightName = data.sightName
+            this.bannerImg = data.bannerImg
+            this.gallaryImgs = data.gallaryImgs
+            this.categoryList = data.categoryList
           }
-          ]
-        },
-        {
-          title: '学生票'
-        },
-        {
-          title: '儿童票'
-        },
-        {
-          title: '特惠票'
-        }]
+        })
     }
   },
   components: {

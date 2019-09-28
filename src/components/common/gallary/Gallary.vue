@@ -3,7 +3,7 @@
        @click="handleGallaryClick">
     <div class="wrapper">
       <swiper :options="swiperOption">
-        <swiper-slide v-for="(item, index) in imgs"
+        <swiper-slide v-for="(item, index) in gallaryImgs"
                       :key="index">
           <img class="item-img"
                :src="item"
@@ -20,7 +20,7 @@
 export default {
   name: 'Gallary',
   props: {
-    imgs: {
+    gallaryImgs: {
       type: Array,
       default () {
         return []

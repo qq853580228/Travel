@@ -33,7 +33,6 @@ export default {
     getDetailInfo () {
       getDetailInfo(this.$route.params.id)
         .then(res => {
-          console.log(res)
           res = res.data
           if (res.ret && res.data) {
             let data = res.data

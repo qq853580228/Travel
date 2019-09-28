@@ -10,14 +10,18 @@
         <div class="banner-number"><span class="iconfont icon-xiangce"></span>{{gallaryImgs.length}}</div>
       </div>
     </div>
-    <gallary v-show="isShouGallary"
-             @closeGallary="closeGallary"
-             :gallary-imgs="gallaryImgs" />
+    <fade-animation>
+      <gallary v-show="isShouGallary"
+               @closeGallary="closeGallary"
+               :gallary-imgs="gallaryImgs" />
+    </fade-animation>
   </div>
 </template>
 
 <script>
 import Gallary from 'components/common/gallary/Gallary.vue'
+import FadeAnimation from 'components/common/fade/FadeAnimation.vue'
+
 export default {
   name: 'DetailBanner',
   props: {
@@ -52,7 +56,8 @@ export default {
     }
   },
   components: {
-    Gallary
+    Gallary,
+    FadeAnimation
   },
   methods: {
     handleBannerClick () {

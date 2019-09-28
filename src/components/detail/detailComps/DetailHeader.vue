@@ -2,16 +2,15 @@
   <div class="detail-header">
     <div class="header-abs iconfont icon-fanhui"
          @click="handleAbs"
-         v-show="isShowAbs"></div>
+         v-if="isShowAbs"></div>
     <div class="header-fixed"
-         :style="gitopacityStyle"
+         :style="opacityStyle"
          v-show="!isShowAbs">
       <router-link to="/home">
         <span class="iconfont icon-fanhui"></span>
       </router-link>
       景点详情
     </div>
-    <div class="slideDown"></div>
   </div>
 </template>
 
@@ -80,6 +79,7 @@ export default {
   text-align: center;
   background-color: $bgColor;
   font-size: 0.32rem;
+  z-index: 2;
   .icon-fanhui {
     position: absolute;
     color: #fff;

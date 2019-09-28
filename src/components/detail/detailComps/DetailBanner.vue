@@ -11,7 +11,8 @@
       </div>
     </div>
     <gallary v-show="isShouGallary"
-             @closeGallary="closeGallary" />
+             @closeGallary="closeGallary"
+             :imgs="imgs" />
   </div>
 </template>
 
@@ -24,7 +25,9 @@ export default {
   },
   data () {
     return {
-      isShouGallary: false
+      isShouGallary: false,
+      imgs: ['http://img1.qunarzz.com/sight/p0/1901/d2/d20386fec7943deba3.img.jpg_r_800x800_8aea5d0c.jpg',
+        'http://img1.qunarzz.com/sight/p0/1901/7f/7f146f621ed9a8f6a3.img.jpg_r_800x800_80ca2a23.jpg']
     }
   },
   methods: {

@@ -6,7 +6,7 @@
           :key="item"
           :ref="item"
           @click="handleLetterClick"
-          @touchstart="handleTouchStart"
+          @touchstart.prevent="handleTouchStart"
           @touchmove="handleTouchMove"
           @touchend="handleTouchEnd">{{item}}</li>
     </ul>
@@ -95,7 +95,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   width: 0.4rem;
   top: 1.58rem;
   right: 0;

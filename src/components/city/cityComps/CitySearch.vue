@@ -5,7 +5,9 @@
              type="text"
              placeholder="输入城市名或拼音"
              v-model.trim="keyword"
-             @input="keywordChange">
+             @input="keywordChange"
+             @focus="inputFocus"
+             @blur="inputBlur">
     </div>
     <scroll class="wrapper"
             v-show="keyword">
@@ -64,11 +66,14 @@ export default {
             }
           })
         }
-        if (!this.keyword) {
-          this.lists = []
-        }
         this.lists = result
       }, 100)
+    },
+    inputFocus () {
+      this.$emit('inputFocus')
+    },
+    inputBlur () {
+      this.$emit('inputBlur')
     },
     handleCityClick (city) {
       this.$store.commit('cityChange', city)

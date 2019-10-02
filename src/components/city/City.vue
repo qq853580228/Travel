@@ -1,10 +1,13 @@
 <template>
   <div class="city">
     <city-header />
-    <city-search :cities="cities" />
+    <city-search :cities="cities"
+                 @inputFocus="inputFocus"
+                 @inputBlur="inputBlur" />
     <city-list :cities="cities"
                :hot-cities="hotCities" />
-    <city-alphabet :cities="cities" />
+    <city-alphabet :cities="cities"
+                   v-show="isShowAlphabet" />
   </div>
 </template>
 
@@ -26,7 +29,8 @@ export default {
   data () {
     return {
       cities: {},
-      hotCities: []
+      hotCities: [],
+      isShowAlphabet: true
     }
   },
   created () {
@@ -43,6 +47,12 @@ export default {
             this.hotCities = data.hotCities
           }
         })
+    },
+    inputFocus () {
+      this.isShowAlphabet = false
+    },
+    inputBlur () {
+      this.isShowAlphabet = true
     }
   }
 }

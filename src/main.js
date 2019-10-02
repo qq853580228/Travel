@@ -11,6 +11,8 @@ import 'assets/css/border.css'
 import 'assets/css/iconfont.css'
 import 'swiper/dist/css/swiper.css'
 
+import 'babel-polyfill'
+
 import store from './store/index.js'
 
 Vue.config.productionTip = false
